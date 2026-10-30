@@ -1,0 +1,51 @@
+ HTML
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pan del Aconcagua</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script defer src="js/main.js"></script>
+</head>
+<body>
+    <header class="encabezado">
+        <div class="encabezado-titulo">
+            <h1>Pan del Aconcagua</h1>
+            <p>Panadería artesanal</p>
+        </div>
+        <button type="button" id="ver-carrito" class="btn-carrito">Ver carrito</button>
+    </header>
+ 
+    <div id="alerta" class="alerta" role="status"></div>
+ 
+    <main class="contenido">
+        <div class="barra-busqueda">
+            <input type="search" id="busqueda" placeholder="Buscar producto por nombre">
+        </div>
+ 
+        <section>
+            <h2>Productos</h2>
+            <div id="productos" class="grilla"></div>
+        </section>
+    </main>
+ 
+    <aside class="carrito" aria-label="Carrito de compras">
+        <div class="carrito-cabecera">
+            <h2>Tu carrito</h2>
+            <button type="button" class="cerrar">Cerrar</button>
+        </div>
+ 
+        <ul id="lista"></ul>
+ 
+        <div class="carrito-pie">
+            <p id="total" class="total"></p>
+            <div class="carrito-acciones">
+                <button type="button" id="vaciar">Vaciar carrito</button>
+                <button type="button" id="compra">Comprar</button>
+            </div>
+        </div>
+    </aside>
+</body>
+</html>
+ 

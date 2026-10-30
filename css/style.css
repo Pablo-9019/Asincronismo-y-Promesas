@@ -1,0 +1,349 @@
+
+:root {
+    --fondo: #f2f5f3;
+    --tinta: #1e2b27;
+    --verde: #2f5d50;
+    --verde-oscuro: #244a40;
+    --trigo: #e3a82b;
+    --blanco: #ffffff;
+    --borde: #d3dcd7;
+    --gris: #5b6b65;
+    --exito: #2f7d4f;
+    --error: #b3362b;
+}
+ 
+* {
+    box-sizing: border-box;
+}
+ 
+body {
+    margin: 0;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    background: var(--fondo);
+    color: var(--tinta);
+}
+ 
+h2 {
+    margin: 0 0 16px;
+}
+ 
+/* Encabezado */
+.encabezado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 32px;
+    background: var(--verde);
+    color: var(--blanco);
+    border-bottom: 6px solid var(--trigo);
+}
+ 
+.encabezado h1 {
+    margin: 0;
+    font-size: 1.8rem;
+}
+ 
+.encabezado p {
+    margin: 4px 0 0;
+}
+ 
+/* Avisos (#alerta): oculto hasta que JS le pone la clase visible */
+.alerta {
+    display: none;
+    padding: 12px 32px;
+    font-weight: 600;
+}
+ 
+.alerta.visible {
+    display: block;
+}
+ 
+.alerta.info {
+    background: #f8ecce;
+    color: #7a5a0c;
+}
+ 
+.alerta.exito {
+    background: #dcefe3;
+    color: var(--exito);
+}
+ 
+.alerta.error {
+    background: #f6dcd9;
+    color: var(--error);
+}
+ 
+/* Contenido */
+.contenido {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 24px 32px 48px;
+}
+ 
+.barra-busqueda {
+    margin-bottom: 24px;
+}
+ 
+input[type="search"] {
+    width: 100%;
+    max-width: 420px;
+    padding: 12px;
+    border: 1px solid var(--borde);
+    border-radius: 6px;
+    font-size: 1rem;
+    background: var(--blanco);
+    color: var(--tinta);
+}
+ 
+/* Tarjetas de producto (.box) */
+.grilla {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+}
+ 
+.box {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 18px;
+    background: var(--blanco);
+    border: 1px solid var(--borde);
+    border-top: 4px solid var(--trigo);
+    border-radius: 8px;
+}
+ 
+.box h3 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+ 
+.box p {
+    margin: 0;
+}
+ 
+.precio {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 8px;
+}
+ 
+.precio-original {
+    color: var(--gris);
+    text-decoration: line-through;
+}
+ 
+.precio-descuento {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--verde);
+}
+ 
+.etiqueta-descuento {
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: var(--trigo);
+    color: var(--tinta);
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+ 
+/* Se oculta con la busqueda */
+.oculto {
+    display: none;
+}
+ 
+/* Botones */
+button {
+    padding: 10px 14px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+ 
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+ 
+.btn {
+    margin-top: auto;
+    background: var(--verde);
+    color: var(--blanco);
+}
+ 
+.btn:hover:not(:disabled) {
+    background: var(--verde-oscuro);
+}
+ 
+.btn-carrito {
+    background: var(--trigo);
+    color: var(--tinta);
+}
+ 
+.btn-carrito:hover {
+    background: #cf9520;
+}
+ 
+button:focus-visible,
+input:focus-visible {
+    outline: 3px solid var(--trigo);
+    outline-offset: 2px;
+}
+ 
+/* Carrito: panel lateral, se abre con la clase active */
+.carrito {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    width: min(400px, 100%);
+    height: 100%;
+    background: var(--blanco);
+    border-left: 1px solid var(--borde);
+    box-shadow: -8px 0 24px rgba(0, 0, 0, 0.15);
+    visibility: hidden;
+    transform: translateX(100%);
+    transition: transform 0.25s ease, visibility 0.25s;
+}
+ 
+.carrito.active {
+    visibility: visible;
+    transform: translateX(0);
+}
+ 
+.carrito-cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid var(--borde);
+}
+ 
+.carrito-cabecera h2 {
+    margin: 0;
+}
+ 
+.cerrar {
+    background: var(--fondo);
+    color: var(--tinta);
+}
+ 
+.cerrar:hover {
+    background: var(--borde);
+}
+ 
+#lista {
+    flex: 1;
+    margin: 0;
+    padding: 0 20px;
+    overflow-y: auto;
+    list-style: none;
+}
+ 
+#lista li {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px 12px;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--borde);
+}
+ 
+#lista li > span {
+    grid-column: 1 / -1;
+    font-weight: 600;
+}
+ 
+#lista del {
+    color: var(--gris);
+    font-weight: 400;
+}
+ 
+.controles-cantidad {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+ 
+.btn-restar,
+.btn-sumar {
+    width: 34px;
+    padding: 6px 0;
+    background: var(--fondo);
+    color: var(--tinta);
+    border: 1px solid var(--borde);
+}
+ 
+.btn-restar:hover,
+.btn-sumar:hover {
+    background: var(--borde);
+}
+ 
+.btn-eliminar {
+    background: var(--blanco);
+    color: var(--error);
+    border: 1px solid var(--error);
+}
+ 
+.btn-eliminar:hover {
+    background: #f6dcd9;
+}
+ 
+.carrito-pie {
+    padding: 20px;
+    border-top: 1px solid var(--borde);
+}
+ 
+.total {
+    margin: 0 0 14px;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+ 
+.carrito-acciones {
+    display: flex;
+    gap: 10px;
+}
+ 
+.carrito-acciones button {
+    flex: 1;
+}
+ 
+#vaciar {
+    background: var(--blanco);
+    color: var(--tinta);
+    border: 1px solid var(--borde);
+}
+ 
+#vaciar:hover {
+    background: var(--fondo);
+}
+ 
+#compra {
+    background: var(--verde);
+    color: var(--blanco);
+}
+ 
+#compra:hover:not(:disabled) {
+    background: var(--verde-oscuro);
+}
+ 
+/* Celular */
+@media (max-width: 600px) {
+    .encabezado,
+    .alerta {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+ 
+    .contenido {
+        padding: 16px;
+    }
+}
